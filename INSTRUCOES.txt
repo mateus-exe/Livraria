@@ -38,6 +38,10 @@ caso seja diferente.
 
 Obs: O sistema pedirá a senha do usuário PostgreSQL.
 
+Caso o comando psql não seja reconhecido, é possível
+que não esteja configurada as variáveis de ambiente,
+então, utilize o seguinte comando:
+& "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres -f backup_livraria_db.sql
 
 --------------------------------------------------------
 PASSO 2 — CONFIGURAR AS CREDENCIAIS DO BANCO
