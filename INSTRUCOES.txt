@@ -1,0 +1,135 @@
+========================================================
+   SISTEMA DE LIVRARIA — INSTRUÇÕES DE INSTALAÇÃO E USO
+========================================================
+
+Desenvolvido em: Python 3.x
+Interface gráfica: CustomTkinter
+Banco de dados: PostgreSQL
+
+
+--------------------------------------------------------
+PRÉ-REQUISITOS
+--------------------------------------------------------
+
+1. Python 3.10 ou superior instalado
+   Download: https://www.python.org/downloads/
+
+2. PostgreSQL 14 ou superior instalado e em execução
+   Download: https://www.postgresql.org/download/
+
+3. pip (gerenciador de pacotes do Python) — normalmente
+   já incluso com a instalação do Python.
+
+
+--------------------------------------------------------
+PASSO 1 — RESTAURAR O BACKUP DO BANCO DE DADOS
+--------------------------------------------------------
+
+O arquivo "backup_livraria_db.sql" já contém o comando
+de criação do banco, das tabelas e todos os dados.
+Basta executar um único comando:
+
+Via linha de comando (cmd/PowerShell):
+
+   psql -U postgres -f backup_livraria_db.sql
+
+Substitua "postgres" pelo seu usuário do PostgreSQL,
+caso seja diferente.
+
+Obs: O sistema pedirá a senha do usuário PostgreSQL.
+
+
+--------------------------------------------------------
+PASSO 2 — CONFIGURAR AS CREDENCIAIS DO BANCO
+--------------------------------------------------------
+
+Abra o arquivo "codigo_fonte/database.py" em qualquer
+editor de texto e edite as credenciais:
+
+   DB_CONFIG = {
+       'dbname': 'livraria_db',
+       'user': 'postgres',       <- seu usuário Postgres
+       'password': '123',        <- sua senha Postgres
+       'host': 'localhost',
+       'port': '5432'
+   }
+
+Salve o arquivo após as alterações.
+
+
+--------------------------------------------------------
+PASSO 3 — INSTALAR AS DEPENDÊNCIAS PYTHON
+--------------------------------------------------------
+
+Abra o terminal (cmd ou PowerShell) dentro da pasta
+"codigo_fonte" e execute:
+
+   pip install -r requirements.txt
+
+Isso instalará automaticamente:
+   - customtkinter  (interface gráfica moderna)
+   - psycopg2       (conector PostgreSQL para Python)
+
+
+--------------------------------------------------------
+PASSO 4 — EXECUTAR A APLICAÇÃO
+--------------------------------------------------------
+
+Ainda na pasta "codigo_fonte", execute:
+
+   python app.py
+
+A janela do Sistema de Livraria será aberta.
+
+
+--------------------------------------------------------
+SOLUÇÃO DE PROBLEMAS COMUNS
+--------------------------------------------------------
+
+Erro: "ModuleNotFoundError: No module named 'psycopg2'"
+  → Execute novamente: pip install psycopg2
+
+Erro: "could not connect to server"
+  → Verifique se o serviço do PostgreSQL está rodando.
+     No Windows: Painel de Controle > Serviços > PostgreSQL
+
+Erro: "FATAL: password authentication failed"
+  → Verifique a senha em database.py
+
+Erro: "database livraria_db does not exist"
+  → Execute o Passo 1 para criar o banco de dados.
+
+
+--------------------------------------------------------
+ESTRUTURA DO CÓDIGO-FONTE
+--------------------------------------------------------
+
+codigo_fonte/
+├── app.py              → Ponto de entrada da aplicação
+├── database.py         → Configuração e conexão com o BD
+├── requirements.txt    → Dependências do projeto
+├── utils.py            → Funções utilitárias
+├── models/             → Modelos de dados (CRUD)
+│   ├── autor.py
+│   ├── cliente.py
+│   ├── editora.py
+│   ├── funcionario.py
+│   └── livro.py
+├── services/           → Lógica de negócio
+│   ├── livro_autor.py  → Associação livro-autor
+│   ├── venda.py        → Registro de vendas
+│   └── relatorios.py   → Consultas e relatórios
+└── gui/                → Interface gráfica
+    ├── frames/         → Telas do sistema
+    │   ├── autores_frame.py
+    │   ├── clientes_frame.py
+    │   ├── editoras_frame.py
+    │   ├── funcionarios_frame.py
+    │   ├── livros_frame.py
+    │   ├── relatorios_frame.py
+    │   └── vendas_frame.py
+    └── widgets/
+        └── components.py   → Componentes reutilizáveis
+
+
+========================================================
