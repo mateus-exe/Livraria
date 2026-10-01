@@ -85,7 +85,10 @@ Ainda na pasta "codigo_fonte", execute:
 
 A janela do Sistema de Livraria será aberta.
 
-
+Caso o comando python não seja reconhecido, é possível
+que não esteja configurada as variáveis de ambiente,
+então, utilize o seguinte comando:
+& "C:\Users\SEU_USUARIO\AppData\Local\Python\pythoncore-3.14-64\python.exe" app.py
 --------------------------------------------------------
 SOLUÇÃO DE PROBLEMAS COMUNS
 --------------------------------------------------------
